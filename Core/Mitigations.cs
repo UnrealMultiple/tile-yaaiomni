@@ -504,7 +504,7 @@ public partial class Plugin
         orig(x, y, doorStyle);
     }
 
-    private void MMHook_Mitigation_TileDropItem(On.Terraria.WorldGen.orig_KillTile_GetItemDrops orig, int x, int y, Terraria.ITile tileCache, out int dropItem, out int dropItemStack, out int secondaryItem, out int secondaryItemStack, bool includeLargeObjectDrops)
+    private void MMHook_Mitigation_TileDropItem(On.Terraria.WorldGen.orig_KillTile_GetItemDrops orig, int x, int y, Terraria.Tile tileCache, out int dropItem, out int dropItemStack, out int secondaryItem, out int secondaryItemStack, bool includeLargeObjectDrops)
     {
         var mitigation = this.config.Mitigation.Value;
         if (mitigation.DisableAllMitigation || !mitigation.OverflowWorldGenItemID)

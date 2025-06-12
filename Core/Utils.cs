@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using Terraria.Localization;
 using TShockAPI;
 using static Terraria.Utils;
-using TileCollection = ModFramework.ICollection<Terraria.ITile>;
+using TileCollection = ModFramework.ICollection<Terraria.Tile>;
 
 namespace Chireiden.TShock.Omni;
 
@@ -571,9 +571,9 @@ public static partial class Utils
         return args.Instance.Read<T>(args.ReadOffset + offset);
     }
 
-    public static List<Terraria.ITile> CheckInvalidTiles(TileCollection tiles, int x, int y, int r)
+    public static List<Terraria.Tile> CheckInvalidTiles(TileCollection tiles, int x, int y, int r)
     {
-        var result = new List<Terraria.ITile>();
+        var result = new List<Terraria.Tile>();
         for (var i = x - r; i <= x + r; i++)
         {
             if (i < 0 || i >= Terraria.Main.maxTilesX)
@@ -595,7 +595,7 @@ public static partial class Utils
         return result;
     }
 
-    public static bool TileValid(Terraria.ITile tile)
+    public static bool TileValid(Terraria.Tile tile)
     {
         return tile.type switch
         {

@@ -103,16 +103,6 @@ public partial class Plugin
                     }
                     if (mtg.ClearOverflowWorldGenStackTrace)
                     {
-                        foreach (var item in this._haltSource)
-                        {
-                            var ti = (int) (item >> 32);
-                            var tj = (int) item;
-                            var array = new byte[TerrariaApi.Server.HeapTile.kHeapTileSize];
-                            var ht = new TerrariaApi.Server.HeapTile(array, 0, 0);
-                            ht.CopyFrom(Terraria.Main.tile[ti, tj]);
-                            TShockAPI.TShock.Log.ConsoleError($"Detour_InspectTileFrame: Clearing tile {ti},{tj} (content: {Convert.ToHexString(array)})");
-                            Terraria.Main.tile[ti, tj].Clear(Terraria.DataStructures.TileDataType.All);
-                        }
                         this._haltSource.Clear();
                     }
                 }

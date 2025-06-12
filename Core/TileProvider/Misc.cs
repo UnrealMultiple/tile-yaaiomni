@@ -10,14 +10,8 @@ partial class Plugin
             && (Terraria.Main.maxTilesX < Terraria.Main.tile.Width || Terraria.Main.maxTilesY < Terraria.Main.tile.Height);
         switch (Terraria.Main.tile)
         {
-            case ModFramework.DefaultCollection<Terraria.ITile>:
-                Terraria.Main.tile = rs ? Terraria.Main.tile : new ModFramework.DefaultCollection<Terraria.ITile>(Terraria.Main.maxTilesX, Terraria.Main.maxTilesY);
-                break;
-            case TerrariaApi.Server.ConstileationProvider:
-                Terraria.Main.tile = rs ? Terraria.Main.tile : new TerrariaApi.Server.ConstileationProvider();
-                break;
-            case TerrariaApi.Server.TileProvider:
-                Terraria.Main.tile = rs ? Terraria.Main.tile : new TerrariaApi.Server.TileProvider();
+            case ModFramework.DefaultCollection<Terraria.Tile>:
+                Terraria.Main.tile = rs ? Terraria.Main.tile : new ModFramework.DefaultCollection<Terraria.Tile>(Terraria.Main.maxTilesX, Terraria.Main.maxTilesY);
                 break;
             case CheckedTypedCollection ctc:
                 ctc.Resize(Terraria.Main.maxTilesX + 1, Terraria.Main.maxTilesY + 1);
@@ -31,7 +25,7 @@ partial class Plugin
                 {
                     try
                     {
-                        Terraria.Main.tile = (ModFramework.ICollection<Terraria.ITile>) Activator.CreateInstance(Terraria.Main.tile.GetType())!;
+                        Terraria.Main.tile = (ModFramework.ICollection<Terraria.Tile>) Activator.CreateInstance(Terraria.Main.tile.GetType())!;
                     }
                     catch
                     {
@@ -55,18 +49,8 @@ partial class Plugin
         {
             case "default":
                 Terraria.Main.tile = Utils.CloneTileCollection(Terraria.Main.tile,
-                    new ModFramework.DefaultCollection<Terraria.ITile>(Terraria.Main.maxTilesX, Terraria.Main.maxTilesY));
+                    new ModFramework.DefaultCollection<Terraria.Tile>(Terraria.Main.maxTilesX, Terraria.Main.maxTilesY));
                 args.Player.SendSuccessMessage("Tile provider set to default.");
-                break;
-            case "heaptile":
-                Terraria.Main.tile = Utils.CloneTileCollection(Terraria.Main.tile,
-                    new TerrariaApi.Server.TileProvider());
-                args.Player.SendSuccessMessage("Tile provider set to heaptile.");
-                break;
-            case "constilation":
-                Terraria.Main.tile = Utils.CloneTileCollection(Terraria.Main.tile,
-                    new TerrariaApi.Server.ConstileationProvider());
-                args.Player.SendSuccessMessage("Tile provider set to constilation.");
                 break;
             case "checkedtyped":
                 Terraria.Main.tile = Utils.CloneTileCollection(Terraria.Main.tile,
